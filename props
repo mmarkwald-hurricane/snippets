@@ -3,12 +3,13 @@
 # name: Props Stanza Default
 # condition: (string= (buffer-name) "props.conf"))
 # --
-[${1:$$(yas-choose-value '("" "source::" "host::"))}]
+[${1:<sourcetype>$$(yas-choose-value '("<sourcetype>" "source::" "host::"))}]
 disabled = ${2:false$$(yas-choose-value '("false" "true"))}
 SHOULD_LINEMERGE = ${3:true$$(yas-choose-value '("true" "false"))}
 ${4:BREAK_ONLY_BEFORE_DATE = true$$(yas-choose-value '("BREAK_ONLY_BEFORE_DATE = true" "LINE_BREAKER = " "BREAK_ONLY_BEFORE = "))}
 TIME_PREFIX = ${6:^}
-TIME_FORMAT = ${7:%Y-%m-%d %H:%M:%S.%3Q$$(my-key-lookup (yas-choose-value (my-get-keys my-date-list)) my-date-list)}
-MAX_TIMESTAMP_LOOKAHEAD = ${8:21}
+TIME_FORMAT = ${7:%Y-%m-%d %H:%M:%S.%3Q$$(my-value-lookup (yas-choose-value (my-get-keys my-date-list)) my-date-list)}
+MAX_TIMESTAMP_LOOKAHEAD = ${8:$$(string-width (my-key-lookup (yas-field-value 7) my-date-list))}
 TZ = ${9:UTC$$(yas-choose-value my-timezone-list)}
+
 $0
