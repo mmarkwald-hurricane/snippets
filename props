@@ -1,14 +1,14 @@
 # _*_ mode: snippet
-# key: stanza
+# key: new
 # name: Props Stanza Default
 # condition: (string= (buffer-name) "props.conf"))
 # --
 [${1:$$(yas-choose-value '("" "source::" "host::"))}]
 disabled = ${2:false$$(yas-choose-value '("false" "true"))}
 SHOULD_LINEMERGE = ${3:true$$(yas-choose-value '("true" "false"))}
-${4:BREAK_ONLY_BEFORE_DATE = true$(yas-choose-value '("BREAK_ONLY_BEFORE_DATE = true" "LINE_BREAKER = " "BREAK_ONLY_BEFORE = "))}
+${4:BREAK_ONLY_BEFORE_DATE = true$$(yas-choose-value '("BREAK_ONLY_BEFORE_DATE = true" "LINE_BREAKER = " "BREAK_ONLY_BEFORE = "))}
 TIME_PREFIX = ${6:^}
-TIME_FORMAT = ${7:%Y-%m-%d %H:%M:%S.%3Q$$(my-date-transform (yas-choose-value basic-date-strings))}
+TIME_FORMAT = ${7:%Y-%m-%d %H:%M:%S.%3Q$$(my-key-lookup (yas-choose-value (my-get-keys my-date-list)) my-date-list)}
 MAX_TIMESTAMP_LOOKAHEAD = ${8:21}
-TZ = ${9:UTC$$(yas-choose-value (read-lines (concat yasnippet-data "tz.txt")))}
+TZ = ${9:UTC$$(yas-choose-value my-timezone-list)}
 $0
