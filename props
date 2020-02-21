@@ -2,12 +2,12 @@
 # key: props
 # name: Props Stanza Default
 # --
-[$1]
-disabled = ${2:$$(yas-choose-value '("false" "true"))}
-SHOULD_LINEMERGE = ${3:$$(yas-choose-value '("true" "false"))}
+[${1:$$(yas-choose-value '("" "source::" "host::"))}]
+disabled = ${2:false$$(yas-choose-value '("false" "true"))}
+SHOULD_LINEMERGE = ${3:true$$(yas-choose-value '("true" "false"))}
 ${4:BREAK_ONLY_BEFORE_DATE = true$(yas-choose-value '("BREAK_ONLY_BEFORE_DATE = true" "LINE_BREAKER = " "BREAK_ONLY_BEFORE = "))}
 TIME_PREFIX = ${6:^}
 TIME_FORMAT = ${7:%Y-%m-%d %H:%M:%S.%3Q}
 MAX_TIMESTAMP_LOOKAHEAD = ${8:21}
-TZ = ${9:UTC}
+TZ = ${9:UTC$$(yas-choose-value (read-lines (concat yasnippet-data "tz.txt")))}
 $0
